@@ -7,7 +7,7 @@ import Button from '../Button';
 function Menu(){
     return (
         <nav className="Menu">
-            <a to="/">
+            <a href="/">
                 <img className="Logo" src={logo} alt="Frontflix logo" />
             </a>
             
