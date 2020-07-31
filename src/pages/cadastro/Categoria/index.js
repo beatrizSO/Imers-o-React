@@ -2,13 +2,14 @@ import React, { useState} from 'react';
 import PageDefault from '../../../components/PageDefault';
 import { Link } from 'react-router-dom';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
 
 function CadastroCategoria(){
     const valoresIniciais = {
         nome: '',
         descricao:'',
         cor: '',
-    }
+    };
     
     const [categorias, setCategorias] = useState([]);
     const [values, setValues] = useState(valoresIniciais);
@@ -21,10 +22,9 @@ function CadastroCategoria(){
     }
 
     function handleError(evento) {
-        const {getAttribute, value} = evento.target;
         setValue (
-        getAttribute('name'), 
-        value
+        evento.target.getAttribute('name'), 
+        evento.target.value,
         );
     }
 
@@ -36,11 +36,11 @@ function CadastroCategoria(){
                 evento.preventDefault();
                 setCategorias([
                     ...categorias,
-                    values
+                    values,
                 ]);
 
                 setValues(valoresIniciais)
-            }}>
+            }} >
 
                 <FormField 
                     label = "Nome da categoria:"
@@ -50,46 +50,25 @@ function CadastroCategoria(){
                     onChange = {handleError}
                 />
 
-                <div>
-
                 <FormField 
-                    label = "Descrição:"
-                    type = "text"
-                    name = "descricao"
-                    value = {values.descricao}
-                    onChange = {handleError}
+                label = "Cor:"
+                type = "color"
+                name = "cor"
+                value = {values.cor}
+                onChange = {handleError}
                 />
 
-                    <label>
-                        Descrição:
-                        <textarea 
-                            type = "text"
-                            value = {values.descricao}
-                            name = "descricao"
-                            onChange = {handleError}
-                        />
-                    </label>
-
-                    <FormField 
-                    label = "Cor:"
-                    type = "color"
-                    name = "cor"
-                    value = {values.cor}
-                    onChange = {handleError}
-                    />
-
-                </div>
 
 
-                <button>
+                <Button>
                     Cadastrar
-                </button>
+                </Button>
             </form>
      
             <ul>
-                {categorias.map((categoria, indice) => {
+                {categorias.map((categoria) => {
                     return (
-                        <li key={`${categoria}${indice}`}>
+                        <li key={`${categoria.nome}`}>
                             {categoria.nome}
                         </li>
                     )
