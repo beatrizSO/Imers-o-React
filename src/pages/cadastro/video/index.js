@@ -9,9 +9,9 @@ function CadastroVideo(){
     const history = useHistory();
 
     const {handleError, values} = useForm({
-        titulo: 'video padrao',
-        url: 'qqr uma',
-        categoria: '1a temp',
+        titulo: '',
+        url: '',
+        categoria: '',
     });
 
     return(
@@ -51,13 +51,15 @@ function CadastroVideo(){
 
             </form>
 
+            <div>
             <Button type="submit">
                     Cadastrar
             </Button>
+            </div>
 
-            <Link to="/cadastro/categoria">
+            <Button as={Link} className="ButtonLink" Link to="/cadastro/categoria">
                 Cadastrar Categoria
-            </Link>
+            </Button>
         </PageDefault>
     )
 }
